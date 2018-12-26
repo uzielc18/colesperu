@@ -1,0 +1,187 @@
+<section class="content">
+
+      <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="/img/colesperu.png" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $colegio->nombre?></h3>
+
+              <p class="text-muted text-center"><?php echo $colegio->getAclempresas()->razonsocial?></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Total de Alumnos</b> <a class="pull-right"><?php echo $colegio->total_alumnos?></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">informacion</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-barcode margin-r-5"></i> Codigo modular</strong>
+
+              <p class="text-muted">
+               <?php echo $colegio->codigo_modular?>
+              </p>
+
+              <hr>
+              <strong><i class="fa fa-bookmark margin-r-5"></i> Codigo local</strong>
+
+              <p class="text-muted">
+               <?php echo $colegio->codigo_local?>
+              </p>
+
+              <hr>
+              <strong><i class="fa fa-book margin-r-5"></i> Ruc</strong>
+
+              <p class="text-muted">
+                <?php echo $colegio->getAclempresas()->ruc?>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Direccion</strong>
+
+              <p class="text-muted"><?php echo $colegio->direccion?></p>
+
+              <hr>
+
+              <!-- <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+              <p>
+                <span class="label label-danger">UI Design</span>
+                <span class="label label-success">Coding</span>
+                <span class="label label-info">Javascript</span>
+                <span class="label label-warning">PHP</span>
+                <span class="label label-primary">Node.js</span>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li><a <a href="/apps/micolegio/">Actividades</a></li>
+              <li><a <a href="/apps/micolegio/alumnos">Alumnos</a></li>
+              <li class="active"><a href="#settings" data-toggle="tab" aria-expanded="false">Configuracion</a></li>
+            </ul>
+            <div class="tab-content">
+             
+              <!-- /.tab-pane -->
+              
+              <!-- /.tab-pane -->
+              <div class="tab-pane active" id="settings">
+                <div class="box-header with-border">
+    <h1 class="box-title">Editar datos del colegio</h1>
+</div>
+<div class="box-body">    
+    <?php View::content() ?>
+    <?php echo Form::open(NULL, 'post', 'role="form" class="form-horizontal"') ?>
+    <?php echo Form::hidden('aclempresas.id') ?>
+    <?php echo Form::hidden('colegios.id');?>
+    <?php echo Form::hidden('colegios.estado',NULL,1) ?>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Ugel: ','colegios.ugeles_id','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::dbSelect('colegios.ugeles_id','nombre',NULL,'Seleccione una ugel','class="form-control" required') ?></div>            
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Nombre de la Empresa: ','colegios.nombre','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('colegios.nombre','class="form-control" required') ?></div>            
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Razon Social:  ','aclempresas.razonsocial','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('aclempresas.razonsocial','class="form-control" required') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Direccion: ','colegios.direccion','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('colegios.direccion','class="form-control" required') ?></div>      
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Ruc: ','aclempresas.ruc','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('aclempresas.ruc','class="form-control" required') ?></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Codigo local: ','colegios.codigo_local','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('colegios.codigo_local','class="form-control" required') ?></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Codigo Modular: ','colegios.codigo_modular','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('colegios.codigo_modular','class="form-control" required') ?></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Telefono Fijo: ','aclempresas.telefonos','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('aclempresas.telefonos','class="form-control"') ?></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Fax: ','aclempresas.telefonos1','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('aclempresas.telefonos1','class="form-control"') ?></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?php echo Form::label('Celular/Movil: ','aclempresas.telefonos1','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9"><?php echo Form::text('aclempresas.telefonos2','class="form-control"') ?></div>
+            </div> 
+        </div>
+    </div>   
+</div>
+<div class="box-footer">
+    <div class="form-actions pull-right">
+        <?php echo Form::submit('Guardar Datos', 'class="btn btn-primary"') ?>
+        <?php echo Html::linkAction('', 'Cancelar', 'class="btn"') ?>
+    </div>
+</div>
+<?php echo Form::close() ?>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+</section>

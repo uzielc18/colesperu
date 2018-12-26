@@ -1,0 +1,183 @@
+<?php
+View::template('backend/backend');
+class ColegiosController extends AdminController {
+ 	   protected function before_filter() {
+        if ( Input::isAjax() ){
+			View::response('view');
+            //View::select(NULL, NULL);
+        }
+       }
+	   public function index($pag= 1) {
+        try {
+            $cl = new Colegios();
+            $this->colegios = new Colegios();
+            $this->titulo='Administrar Colegios';
+            $conditions='1=1';
+             if(Input::hasPost('colegios'))
+             {  
+                $conditions='';
+                $val=Input::post('colegios');
+                $n=0;
+                foreach ($val as $key => $value) 
+                {
+                   if(!empty($value)){
+                        $n++;
+                        $AND = $n==1 ? '' : ' AND ';
+                        $conditions.= $AND.$key.'='.$value;
+                    }
+                }
+             }
+            $this->results = $cl->paginate("conditions: $conditions","page: $pag");
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+    }
+	public function crear() {
+        $this->titulo = 'Crear Empresa';
+        try {
+            if (Input::hasPost('aclempresas')) {
+                $em = new Aclempresas(Input::post('aclempresas'));
+				$em->estado=1;
+				$em->userid=Auth::get('id');
+				$em->activo='0';
+				if ($em->save()) {
+                    Flash::valid('Empresa fué agregada Exitosamente...!!!');
+                    //Acciones::add("Agregó Empresa {$em->nombre} al sistema");
+                    if (Input::hasPost('colegios')) {
+                        $cl = new Colegios(Input::post('colegios'));
+                        $cl->estado=1;
+                        $cl->aclempresas_id=$em->id;
+                        if ($cl->save()) {
+                            Flash::valid('Empresa fué agregada Exitosamente...!!!');
+                            //Acciones::add("Agregó Empresa {$em->nombre} al sistema");
+                            return Redirect::to();
+                        } else {
+                            Flash::warning('No se Pudieron Guardar los Datos...!!!');
+                        }
+                    }
+                    return Redirect::to();
+                } else {
+                    Flash::warning('No se Pudieron Guardar los Datos...!!!');
+                }
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+    }
+	public function editar($id) {
+        $this->titulo = 'Editar Empresa';
+        try {
+            View::select('crear');
+
+            $em = new Aclempresas();
+            $cl = new Colegios();
+
+            $this->aclempresas = $em->find_first($id);
+            $this->colegios = $cl->find_first($id);
+
+            if (Input::hasPost('aclempresas')) {
+					$em->userid=Auth::get('id');
+                if ($em->update(Input::post('aclempresas'))) {
+                    Flash::valid('La Empresa fué actualizada Exitosamente...!!!');
+                    Acciones::add("Editó la Empresa {$em->nombre}", 'aclempresas');
+                    if (Input::hasPost('colegios')) {
+                        $cl->aclempresas_id=$id;
+                        if ( $cl->update(Input::post('colegios'))) {
+                            Flash::valid('El Colegio fué actualizada Exitosamente...!!!');
+                            Acciones::add("Editó el colegio {$cl->nombre}", 'aclempresas');
+                            return Redirect::to();
+                        } else {
+                            Flash::warning('No se Pudieron Guardar los Datos...!!!');
+                            unset($this->em); //para que cargue el $_POST en el form
+                        }
+                    }
+                    return Redirect::to();
+                } else {
+                    Flash::warning('No se Pudieron Guardar los Datos...!!!');
+                    unset($this->em); //para que cargue el $_POST en el form
+                }
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+    }
+	public function activar($id) {
+        try {
+            $id = Filter::get($id, 'digits');
+
+            $em = new Aclempresas();
+
+            if (!$em->find_first($id)) { //si no existe
+                Flash::warning("No existe ninguna Empresa con id '{$id}'");
+            } else if ($em->activar()) {
+                Flash::valid("La Empresa <b>{$em->nombre}</b> Esta ahora <b>Activo</b>...!!!");
+                Acciones::add("Colocó a la Empresa {$em->nombre} como activo", 'aclempresas');
+            } else {
+                Flash::warning("No se Pudo Activar la Empresa <b>{$em->em}</b>...!!!");
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+        Redirect::to();
+    }
+	public function desactivar($id) {
+        try {
+            $id = Filter::get($id, 'digits');
+
+            $em = new Aclempresas();
+
+            if (!$em->find_first($id)) { //si no existe
+                Flash::warning("No existe ninguna Empresa con id '{$id}'");
+            } else if ($em->desactivar()) {
+                Flash::valid("La Empresa <b>{$em->nombre}</b> Esta ahora <b>Inactivo</b>...!!!");
+                Acciones::add("Colocó a la Empresa {$em->nombre} como inactivo", 'aclempresas');
+            } else {
+                Flash::warning("No se Pudo Desactivar la Empresa <b>{$em->em}</b>...!!!");
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+        return Redirect::to();
+    }
+    public function borrar($id){
+        try {
+            $id = Filter::get($id, 'digits');
+            $doc = new Aclempresas();
+            if (!$doc->find_first($id)){ //si no existe el usuario
+                Flash::warning("No existe ningun registro con id '{$id}'");
+            }else if ($doc->borrar()) {
+                Flash::valid("El <b>{$doc->id}</b> el registro esta borrado ahora <b>Borrado</b>...!!!");
+                Acciones::add("Colocó el registro {$doc->id} como borrado", $this->model);
+            } else {
+                Flash::warning('No se pudo borrar el registro!!!');
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+        return Redirect::toAction('index');
+    }
+
+
+    public function eliminar($id) {
+        try {
+            $id = Filter::get($id, 'digits');
+
+            $em = new Aclempresas();
+
+            if (!$em->find_first($id)) { //si no existe
+                Flash::warning("No existe ninguna Empresa con id '{$id}'");
+            } else if ($em->delete()) {
+                Flash::valid("La Empresa <b>{$em->em}</b> fué Eliminado...!!!");
+                Acciones::add("Eliminó la Empresa {$em->em} del sistema", 'aclempresas');
+            } else {
+                Flash::warning("No se Pudo Eliminar la Empresa <b>{$em->em}</b>...!!!");
+            }
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
+        return Redirect::to();
+    }
+
+}
+
+?>

@@ -1,0 +1,144 @@
+<section class="content">
+
+      <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="/img/colesperu.png" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $colegio->nombre?></h3>
+
+              <p class="text-muted text-center"><?php echo $colegio->getAclempresas()->razonsocial?></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Total de Alumnos</b> <a class="pull-right"><?php echo $colegio->total_alumnos?></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">informacion</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-barcode margin-r-5"></i> Codigo modular</strong>
+
+              <p class="text-muted">
+               <?php echo $colegio->codigo_modular?>
+              </p>
+
+              <hr>
+              <strong><i class="fa fa-bookmark margin-r-5"></i> Codigo local</strong>
+
+              <p class="text-muted">
+               <?php echo $colegio->codigo_local?>
+              </p>
+
+              <hr>
+              <strong><i class="fa fa-book margin-r-5"></i> Ruc</strong>
+
+              <p class="text-muted">
+                <?php echo $colegio->getAclempresas()->ruc?>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Direccion</strong>
+
+              <p class="text-muted"><?php echo $colegio->direccion?></p>
+
+              <hr>
+
+              <!-- <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+              <p>
+                <span class="label label-danger">UI Design</span>
+                <span class="label label-success">Coding</span>
+                <span class="label label-info">Javascript</span>
+                <span class="label label-warning">PHP</span>
+                <span class="label label-primary">Node.js</span>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li ><a href="/apps/micolegio/" aria-expanded="true">Actividades</a></li>
+              <li class="active"><a href="#alumnado" data-toggle="tab" aria-expanded="true">Alumnos</a></li>
+              <li class=""><a <a href="/apps/micolegio/editar">Configuracion</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="alumnado">
+                <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Listado de alumnos registrados</h3>
+                    <div class="box-tools"><?php echo Html::linkAction("registrar_alumno/", '<i class="fa fa-plus"></i>', 'class="btn btn-primary" title="Crear nuevo alumno"') ?></div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table class="table table-bordered">
+                      <thead> 
+                        <tr>
+                          <th>Codigo</th>
+                          <th>DNI</th>
+                          <th>Nombres </th>
+                          <th># incidencias</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead> 
+                      <tbody>
+                        <?php foreach($alumnos as $alumno){?>
+                        <tr>
+                          <td><?php echo $alumno->codigo_estudiante?></td>
+                          <td><?php echo $alumno->dni?></td>
+                          <td><?php echo $alumno->nombres?> <?php echo $alumno->apellido_paterno?> <?php echo $alumno->apellido_materno?></td>
+                          <td><?php echo $alumno->getTotalIncidencias();?></td>
+                          <td>
+                            <?php echo Html::linkAction("ver/$alumno->id",'<i class="fa fa-search" style="font-size:20px;"></i>','title="Ver contenido"')?>
+                            <?php echo Html::linkAction("editar_alumno/$alumno->id",'<i class="fa fa-edit" style="font-size:20px;"></i>','title="Editar registro"')?>
+                            <?php echo Html::linkAction("registrar_incidencia/$alumno->id",'<i class="fa fa-bell" style="font-size:20px;"></i>','title="Agregar incidencias"')?>
+                            <?php /*if($alumno->estado==3){
+                                echo Js::linkAction("eliminar/$alumno->id",'<i class="fa fa-trash-o" style="font-size:20px; color:red;"></i>','Deseas Eliminar este registro? esta accion no es reversible',NULL,'title="Eliminar registro"');
+                            }else{echo Html::linkAction("borrar/$alumno->id",'<i class="fa fa-trash" style="font-size:20px;"></i>', 'onclick="return confirm(\'¿Está seguro?\')"');}*/
+                            ?>
+                              
+                            </td>
+                        </tr>
+                      <?php }?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.box-body -->
+                  <div class="box-footer clearfix">
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+</section>

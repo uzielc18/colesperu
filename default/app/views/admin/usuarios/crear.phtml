@@ -1,0 +1,95 @@
+<div class="box-header with-border">
+    <h1 class="box-title">Crear Usuario</h1>
+</div>      
+<?php View::content() ?>
+<?php echo Form::open(NULL, 'post', 'class="form-horizontal"') ?>
+<?php echo Form::hidden('usuario.id') ?>
+<?php echo Form::hidden('dato.id') ?>
+<div class="box-body">
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Usuario','usuario.usuario','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('usuario.usuario','class="form-control" placeholder="Usuario" required')?>
+                </div>
+            </div>  
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('correo','dato.correo','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('dato.correo','class="form-control" placeholder="Correo @" required')?>
+                </div>
+            </div>  
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('DNI','dato.dni','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('dato.dni','class="form-control" placeholder="Documento de identidad" required')?>
+                </div>
+            </div>  
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Nombre','dato.nombre','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('dato.nombre','class="form-control" placeholder="Nombre" required')?>
+                </div>
+            </div>  
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Apellido paterno','dato.appaterno','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('dato.appaterno','class="form-control" placeholder="Apellido paterno" required')?>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Apellido materno','dato.apmaterno','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::text('dato.apmaterno','class="form-control" placeholder="Apellido materno" required')?>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Rol','dato.aclroles_id','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::dbSelect('usuario.aclroles_id','rol',NULL,'Seleccione','class="form-control" required')?>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Empresas','dato.aclempresas_id','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::dbSelect('dato.aclempresas_id','razonsocial',NULL,'Seleccione','class="form-control" required')?>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <?php echo Form::label('Cargo','dato.aclcargos_id','class="col-sm-3 control-label"');?>
+                <div class="col-sm-9">
+                    <?php echo Form::dbSelect('dato.aclcargos_id','nombre',NULL,'Seleccione','class="form-control" required')?>
+                </div>
+            </div>  
+        </div>
+        
+    </div>
+</div>
+<div class="box-footer">
+    <div class="right-pull">
+        <?php echo Form::submit('Guardar Datos', 'class="btn btn-primary"') ?>
+        <?php echo Html::linkAction('', 'Cancelar', 'class="btn"') ?>
+    </div>
+</div>
+<?php echo Form::close() ?>

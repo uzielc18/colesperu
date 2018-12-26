@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<?Php 
+$modulo = Router::get('module');
+$controller = Router::get('controller');
+$patrones = array();
+$patrones[0] = '/s/';
+$sustituciones = array();
+$sustituciones[2] = ' ';
+$modulo_title = ucwords(preg_replace($patrones, $sustituciones, $modulo));
+$t_t=explode(" ",$modulo_title);
+$mini1=substr($t_t[0],0, 1);
+$mini2=substr($t_t[1],0, 1);
+
+?>
+        <title><?Php echo $controller;?><?Php echo $modulo_title?></title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+        <?php
+        //Tag::css('themes/base/jquery.ui.all');
+        Tag::css('backendnew/bootstrap.min');
+        //Tag::css('backendnew/font-awesome.min');
+        //echo '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-DmABxgPhJN5jlTwituIyzIUk6oqyzf3+XuP7q3VfcWA2unxgim7OSSZKKf0KSsnh" crossorigin="anonymous">';       
+        Tag::css('backendnew/AdminLTE');
+        Tag::css('backendnew/skins/_all-skins');
+        Tag::css('backendnew/iCheck/flat/blue');
+        Tag::css('backendnew/morris/morris');
+        Tag::css('backendnew/jvectormap/jquery-jvectormap-1.2.2');
+        Tag::css('backendnew/fullcalendar/fullcalendar');
+        Tag::css('backendnew/datepicker/datepicker3');
+        Tag::css('backendnew/daterangepicker/daterangepicker');
+        Tag::css('backendnew/bootstrap-wysihtml5/bootstrap3-wysihtml5.min');
+        Tag::css('token-input');
+        echo Html::includeCss();
+        
+        echo '<link rel="stylesheet" type="text/css" href="/css/imprimir.css" media="print">';
+        
+        ?>
+        <?php
+        extract(Router::get(), EXTR_OVERWRITE);
+        echo "<script src=\"", PUBLIC_PATH, "javascript/jquery/plugins/jQuery/jquery-2.2.3.min.js\">";?></script>
+        <script src="https://use.fontawesome.com/92eaa29aaf.js"></script>
+    </head>
+    <script type="text/javascript">
+        if (typeof(Storage) !== "undefined") {
+            console.log('hola',localStorage.getItem("CSS-BODY"))
+        } else {
+
+        }
+    </script>
+    <?php if($controller==='materiales' or $controller ==='mis_productos'){?>
+
+    <body class="sidebar-collapse sidebar-mini wysihtml5-supported skin-red">
+    <?php }else{?>
+
+    <body class="sidebar-mini wysihtml5-supported skin-red">
+    <?php }?>    
+    <div class="wrapper">
+        <!-- header logo: style can be found in header.less -->
+
+        <?php View::partial('cabecera_admin',false,array('modulo_title'=>$modulo_title,'modulo'=>$modulo,'mini1'=>$mini1,'mini2'=>$mini2)) ?>
+        <?php View::partial('menu_admin',false,array('modulo'=>'apps')) ?>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                <?php View::partial('section_header',false,array('titulo_page'=>$titulo_page,'titulo_small_page'=>$titulo_small_page)) ?>
+                </section>
+
+                <!-- Main content -->
+
+                <section class="content">
+                 <div class="box" style="padding-left: 5px;">
+                 <?php View::content() ?>
+                 </div>
+                </section><!-- /.content -->
+            </div><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+    <?Php View::partial('jquerynew');?>
+    </body>
+</html>

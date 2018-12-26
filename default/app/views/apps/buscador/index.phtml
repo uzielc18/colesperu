@@ -1,0 +1,77 @@
+<section class="content">
+
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"> Buscar: nombre, dni , codigo</h3>
+      <div class="input-group">
+        <input type="text" id="buscar_dato" name="buscar_dato" class="form-control" placeholder="Buscar...">
+        <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn-dato" class="btn btn-flat">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+      </div>          
+  </div>
+<!-- /.box-header -->
+  <div class="box-body">
+    <ul class="products-list product-list-in-box">
+      <?php foreach($deudas as $deuda):?>
+        <li class="item">
+          <div class="product-img">
+            <img class="img-circle img-bordered-sm" src="/img/avatar5.png" alt="user image">
+          </div>
+          <div class="product-info">
+            <a href="/apps/buscador/alumno/<?php echo $deuda->alumno_id?>" class="product-title"><?php echo $deuda->nombres?> <?php echo $deuda->paterno?> <?php echo $deuda->materno?>
+            <span class="label label-primary age"><?php echo $deuda->creacion?></span></a>
+            <span class="pull-right">
+              <?php foreach($estados as $estado){?>
+                <a href="javascript:;" class="btn btn-app <?php  echo $estado->id==$deuda->estados_id ? $estado->color.' ': 'disabled'; ?>">
+                  <i class="<?php echo $estado->icono?>"></i> <?php echo $estado->nombre?>
+                </a>
+              <?php }?>
+              <?php 
+              //echo $deuda->colegios_id.'=='.Auth::get('aclempresas_id');
+              if($deuda->colegios_id==Auth::get('aclempresas_id')){?>
+                <a class="btn btn-app" href="/apps/buscador/eliminar/<?php echo $deuda->deuda_id?>/<?php echo $deuda->alumno_id?>">
+                  <i class="fa fa-trash"></i> Eliminar
+                </a>
+            <?php }?>
+
+            </span>
+            <span class="product-description">
+              DNI: <?php echo $deuda->dni?><br>
+              Codigo: <?php echo $deuda->codigo?><br>
+              <?php echo $deuda->descripcion?></span>
+            
+          </div>
+        </li>
+      <?php endforeach; ?>
+      <!-- /.item -->
+    </ul>
+  </div>
+<!-- /.box-body -->
+
+  
+</div>
+</section>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  $( "#search-btn-dato" ).on( "click", function() {
+    var q= $('#buscar_dato').val();
+    $.ajax({
+        url : '/apps/buscador/resultados',
+        data : { q : q },
+        type : 'GET',
+        success : function(data) {
+            $('div.box-body').html(data)
+        },
+        error : function(xhr, status) {
+        },
+        complete : function(xhr, status) {
+        }
+    });
+  });
+    
+});
+ 
+</script>

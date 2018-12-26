@@ -1,0 +1,105 @@
+<section class="content">
+
+      <div class="row">
+        <div class="col-md-8">
+
+          <!-- Profile Image -->
+          <div class="box box-info">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="/img/<?php echo $alumno->sexo?>.png" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $alumno->apellido_paterno?> <?php echo $alumno->apellido_materno?>, <?php echo $alumno->nombres?></h3>
+              <ul class="list-group list-group-unbordered">
+                
+                <li class="list-group-item">
+                  <b><i class="fa fa-barcode margin-r-5"></i> Codigo estudiante</b> <a class="pull-right text-muted">
+               <?php echo $alumno->codigo_estudiante?></a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-bookmark margin-r-5"></i> DNI</b> <a class="pull-right text-muted"><?php echo $alumno->dni?></a>
+                </li>
+                
+              </ul>
+              <div class="box-body table-responsive no-padding">
+                <h3>Incidencias</h3>
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Centro Educativo</th>
+                    <th>Accion</th>
+                  </tr>
+                  </thead>
+                 
+                  <tbody>
+                  <?php foreach($deudas as $deuda){?>
+                  <tr>
+                    <td><?php echo $deuda->id?></td>
+                    <td><?php echo $deuda->anio?> <?php echo $deuda->mes?></td>
+                    <td><?php echo $deuda->descripcion?></td>
+                    <td><?php echo $deuda->getColegios()->nombre?></td>
+                    <td><span class="label <?php echo $deuda->getEstados()->color?>"><?php echo $deuda->getEstados()->nombre?></span></td>
+                    <td>
+                      <?php if($deuda->colegios_id==Auth::get('aclempresas_id'))echo Html::linkAction("eliminar_deuda/".$deuda->id."/".$deuda->alumnos_id,'<i class="fa fa-trash" style="font-size:20px;"></i>','title="Ver contenido"')?>
+                    </td>
+                  </tr>
+                 <?php }?>
+                </tbody>
+              </table>
+              </div>
+
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+         
+          <!-- /.box -->
+        </div><div class="col-md-4">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="/img/colesperu.png" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $colegio->nombre?></h3>
+
+              <p class="text-muted text-center"><?php echo $colegio->getAclempresas()->razonsocial?></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Total de Alumnos</b> <a class="pull-right"><?php echo $colegio->total_alumnos?></a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-barcode margin-r-5"></i> Codigo modular</b> <a class="pull-right text-muted">
+               <?php echo $colegio->codigo_modular?></a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-bookmark margin-r-5"></i> Codigo local</b> <a class="pull-right text-muted"><?php echo $colegio->codigo_local?></a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-book margin-r-5"></i> Ruc</b> <a class="pull-right text-muted"><?php echo $colegio->getAclempresas()->ruc?></a>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="fa fa-map-marker margin-r-5"></i> Direccion</b> <a class="pull-right text-muted"><?php echo $colegio->direccion?></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+      </div>
+</section>

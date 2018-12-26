@@ -1,0 +1,129 @@
+<section class="content">
+	<div class="box">
+	<?php echo Form::open(NULL, 'post', 'role="form" class="form-horizontal"') ?>
+    <?php echo Form::hidden('alumnos.id') ?>
+    <?php echo Form::hidden('alumnos.aclempresas_id',NULL,Auth::get('aclempresas_id')) ?>
+    <?php echo Form::hidden('deudas.colegios_id',NULL,Auth::get('aclempresas_id')) ?>
+    <?php echo Form::hidden('deudas.id');?>
+    <?php //echo Form::hidden('deudas.estados_id',NULL,1) ?>
+    <?php echo Form::hidden('alumnos.estados',NULL,1) ?>
+      <div class="box-header with-border">
+        <h3 class="box-title">Registrar alumno y su incidencia</h3>
+        <div class="box-tools"><?php //echo Html::linkAction("registrar_incidencia/", '<i class="fa fa-plus"></i>', 'class="btn btn-primary" title="Crear nuevo alumno"') ?></div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+
+      	<div class="row">
+      		<?php if($ver_form_alumnos){?>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Nombres: ','alumnos.nombres','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9"><?php echo Form::text('alumnos.nombres','class="form-control" required') ?></div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Primer apellido: ','alumnos.apellido_paterno','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9"><?php echo Form::text('alumnos.apellido_paterno','class="form-control" required') ?></div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Segundo apellido: ','alumnos.apellido_materno','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9"><?php echo Form::text('alumnos.apellido_materno','class="form-control" required') ?></div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('DNI: ','alumnos.dni','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9"><?php echo Form::text('alumnos.dni','class="form-control" required') ?></div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Codigo estudiante: ','alumnos.codigo_estudiante','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9"><?php echo Form::text('alumnos.codigo_estudiante','class="form-control" required') ?></div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Sexo: ','alumnos.sexo','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9"><?php echo Form::Select('alumnos.sexo',array('Femenino'=>'Femenino','Masculino'=>'Masculino'),'class="form-control" required') ?></div>            
+	            </div>
+	        </div>
+	        <?php 
+			}else{
+			?>
+			<dl class="dl-horizontal">
+                <dt>Nombres</dt>
+                <dd><?php echo $alumno->apellido_paterno?> <?php echo $alumno->apellido_materno?>, <?php echo $alumno->nombres?></dd>
+                <dt>Colegio</dt>
+                <dd><?php echo $alumno->getColegios()->nombre?></dd>
+                <dt>Codigo</dt>
+                <dd><?php echo $alumno->codigo_estudiante?></dd>
+                <dt>Dni</dt>
+                <dd><?php echo $alumno->dni?></dd>
+              </dl>
+			<?php	
+			}
+	        if($ver_form_deuda){?>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Año: ','deudas.anio','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9">
+	                	<?php 
+	                	$anio_fin=date('Y')+50;
+	                	$anio_inicio=date('Y')-5;
+	                	$anios=[];
+	                	for ($i = $anio_inicio; $i <= $anio_fin; $i++) {
+						    $anios[$i]=$i;
+						}
+						//print_r($anios);
+	                	echo Form::Select('deudas.anio',$anios,'class="form-control" required',date('Y')) ?>
+	                </div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Mes: ','deudas.mes','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9">
+	                	<?php 
+						//print_r($anios);
+	                	echo Form::Select('deudas.mes',$meses,'class="form-control" required',date('m')) ?>
+	                </div>            
+	            </div>
+	        </div>
+
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Incidencia: ','deudas.estados_id','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9">
+	                	<?php 
+						//print_r($anios);
+	                	echo Form::dbSelect('deudas.estados_id','nombre',NULL,'Seleccione','class="form-control" required',1) ?>
+	                </div>            
+	            </div>
+	        </div>
+	        <div class="col-sm-6">
+	            <div class="form-group">
+	                <?php echo Form::label('Descripcion: ','deudas.descripcion','class="col-sm-3 control-label"');?>
+	                <div class="col-sm-9">
+	                	<?php 
+						//print_r($anios);
+	                	echo Form::text('deudas.descripcion','class="form-control"') ?>
+	                </div>            
+	            </div>
+	        </div>
+	        <?php }?>
+	    </div>
+      </div>
+      <div class="box-footer">
+	    <div class="form-actions pull-right">
+	        <?php echo Form::submit('Guardar Datos', 'class="btn btn-primary"') ?>
+	        <?php echo Html::linkAction('', 'Cancelar', 'class="btn"') ?>
+	    </div>
+	</div>
+	<?php echo Form::close() ?>
+    </div>
+</section>
