@@ -59,13 +59,14 @@ class UsuariosController extends AdminController {
                 $dat->userid=Auth::get('id');
                 if ($dat->save()) {
 					$usr= new Users(Input::post('usuario'));
-                    $usr->nombres=$dat->nombre.' '.$dat->appaterno;
+                    $usr->name=$dat->nombre.' '.$dat->appaterno;
                     $usr->clave=md5('123456');
+                    $usr->password='123456';
                     $usr->aclempresas_id=$dat->aclempresas_id;
+                    $usr->email=$dat->correo;
                     $usr->dni=$dat->dni;
                     $usr->picture='avatar2.png';
                     $usr->activo='0';
-                    $usr->estado='1';
                     $usr->acldatos_id=$dat->id;
 					
 					if ($usr->save()) {
