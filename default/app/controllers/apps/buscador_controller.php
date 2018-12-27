@@ -21,7 +21,7 @@ class BuscadorController extends AdminController {
 		{
 	        $html_salida.='<li class="item">';
 	        $html_salida.='<div class="product-img">';
-	        $html_salida.='<img class="img-circle img-bordered-sm" src="/img/avatar5.png" alt="user image">';
+	        $html_salida.='<img class="img-circle img-bordered-sm" src="/img/'.$deuda->sexo.'.png" alt="user image">';
 	        $html_salida.='</div>';
 	        $html_salida.='<div class="product-info">';
 	        $html_salida.='<a href="/apps/buscador/alumno/'.$deuda->alumno_id.'" class="product-title">'.$deuda->nombres.' '.$deuda->paterno.' '.$deuda->materno;
