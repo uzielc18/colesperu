@@ -8,7 +8,7 @@
     <?php //echo Form::hidden('deudas.estados_id',NULL,1) ?>
     <?php echo Form::hidden('alumnos.estados',NULL,1) ?>
       <div class="box-header with-border">
-        <h3 class="box-title">Registrar alumno y su incidencia</h3>
+        <h3 class="box-title">Agregar Estudiante y una incidencia</h3>
         <div class="box-tools"><?php //echo Html::linkAction("registrar_incidencia/", '<i class="fa fa-plus"></i>', 'class="btn btn-primary" title="Crear nuevo alumno"') ?></div>
       </div>
       <!-- /.box-header -->
@@ -18,31 +18,31 @@
       		<?php if($ver_form_alumnos){?>
 	        <div class="col-sm-6">
 	            <div class="form-group">
-	                <?php echo Form::label('Nombres: ','alumnos.nombres','class="col-sm-3 control-label"');?>
+	                <?php echo Form::label('Nombres del estudiante: ','alumnos.nombres','class="col-sm-3 control-label"');?>
 	                <div class="col-sm-9"><?php echo Form::text('alumnos.nombres','class="form-control" required') ?></div>            
 	            </div>
 	        </div>
 	        <div class="col-sm-6">
 	            <div class="form-group">
-	                <?php echo Form::label('Primer apellido: ','alumnos.apellido_paterno','class="col-sm-3 control-label"');?>
+	                <?php echo Form::label('Apellido Paterno: ','alumnos.apellido_paterno','class="col-sm-3 control-label"');?>
 	                <div class="col-sm-9"><?php echo Form::text('alumnos.apellido_paterno','class="form-control" required') ?></div>            
 	            </div>
 	        </div>
 	        <div class="col-sm-6">
 	            <div class="form-group">
-	                <?php echo Form::label('Segundo apellido: ','alumnos.apellido_materno','class="col-sm-3 control-label"');?>
+	                <?php echo Form::label('Apellido Materno: ','alumnos.apellido_materno','class="col-sm-3 control-label"');?>
 	                <div class="col-sm-9"><?php echo Form::text('alumnos.apellido_materno','class="form-control" required') ?></div>            
 	            </div>
 	        </div>
 	        <div class="col-sm-6">
 	            <div class="form-group">
-	                <?php echo Form::label('DNI: ','alumnos.dni','class="col-sm-3 control-label"');?>
+	                <?php echo Form::label('DNI del estudiante: ','alumnos.dni','class="col-sm-3 control-label"');?>
 	                <div class="col-sm-9"><?php echo Form::text('alumnos.dni','class="form-control" required') ?></div>            
 	            </div>
 	        </div>
 	        <div class="col-sm-6">
 	            <div class="form-group">
-	                <?php echo Form::label('Codigo estudiante: ','alumnos.codigo_estudiante','class="col-sm-3 control-label"');?>
+	                <?php echo Form::label('Codigo del estudiante: ','alumnos.codigo_estudiante','class="col-sm-3 control-label"');?>
 	                <div class="col-sm-9"><?php echo Form::text('alumnos.codigo_estudiante','class="form-control" required') ?></div>            
 	            </div>
 	        </div>
@@ -56,13 +56,13 @@
 			}else{
 			?>
 			<dl class="dl-horizontal">
-                <dt>Nombres</dt>
+                <dt>Nombres del estudiante</dt>
                 <dd><?php echo $alumno->apellido_paterno?> <?php echo $alumno->apellido_materno?>, <?php echo $alumno->nombres?></dd>
                 <dt>Colegio</dt>
                 <dd><?php echo $alumno->getColegios()->nombre?></dd>
-                <dt>Codigo</dt>
+                <dt>Codigo del estudiante</dt>
                 <dd><?php echo $alumno->codigo_estudiante?></dd>
-                <dt>Dni</dt>
+                <dt>Dni del estudiante</dt>
                 <dd><?php echo $alumno->dni?></dd>
               </dl>
 			<?php	

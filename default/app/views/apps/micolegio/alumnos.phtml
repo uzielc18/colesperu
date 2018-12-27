@@ -14,7 +14,7 @@
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Total de Alumnos</b> <a class="pull-right"><?php echo $colegio->total_alumnos?></a>
+                  <b>Total de estuidantes</b> <a class="pull-right"><?php echo $colegio->total_alumnos?></a>
                 </li>
               </ul>
             </div>
@@ -82,24 +82,24 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li ><a href="/apps/micolegio/" aria-expanded="true">Actividades</a></li>
-              <li class="active"><a href="#alumnado" data-toggle="tab" aria-expanded="true">Alumnos</a></li>
+              <li class="active"><a href="#alumnado" data-toggle="tab" aria-expanded="true">Estudiantes</a></li>
               <li class=""><a <a href="/apps/micolegio/editar">Configuracion</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="alumnado">
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Listado de alumnos registrados</h3>
-                    <div class="box-tools"><?php echo Html::linkAction("registrar_alumno/", '<i class="fa fa-plus"></i>', 'class="btn btn-primary" title="Crear nuevo alumno"') ?></div>
+                    <h3 class="box-title">Listado de estudiantes registrados</h3>
+                    <div class="box-tools"><?php echo Html::linkAction("registrar_alumno/", 'Crear nuevo <i class="fa fa-plus"></i>', 'class="btn btn-primary" title="Crear nuevo alumno"') ?></div>
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body">
                     <table class="table table-bordered">
                       <thead> 
                         <tr>
-                          <th>Codigo</th>
-                          <th>DNI</th>
-                          <th>Nombres </th>
+                          <th>Codigo del estudiante</th>
+                          <th>DNI del estudiante</th>
+                          <th>Nombres del estudiante </th>
                           <th># incidencias</th>
                           <th>Acciones</th>
                         </tr>
@@ -112,7 +112,7 @@
                           <td><?php echo $alumno->nombres?> <?php echo $alumno->apellido_paterno?> <?php echo $alumno->apellido_materno?></td>
                           <td><?php echo $alumno->getTotalIncidencias();?></td>
                           <td>
-                            <?php echo Html::linkAction("ver/$alumno->id",'<i class="fa fa-search" style="font-size:20px;"></i>','title="Ver contenido"')?>
+                            <?php echo Html::link("/apps/buscador/alumno/$alumno->id",'<i class="fa fa-search" style="font-size:20px;"></i>','title="Ver contenido"')?>
                             <?php echo Html::linkAction("editar_alumno/$alumno->id",'<i class="fa fa-edit" style="font-size:20px;"></i>','title="Editar registro"')?>
                             <?php echo Html::linkAction("registrar_incidencia/$alumno->id",'<i class="fa fa-bell" style="font-size:20px;"></i>','title="Agregar incidencias"')?>
                             <?php /*if($alumno->estado==3){

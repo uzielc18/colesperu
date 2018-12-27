@@ -42,7 +42,7 @@ class BuscadorController extends AdminController {
 	    	}
 
 	        $html_salida.='</span>';
-	        $html_salida.='<span class="product-description">'.$deuda->descripcion.'</span>';
+	        $html_salida.='<span class="product-description">DNI del estudiante:'.$deuda->dni.'<br> Codigo del estudiante:'.$deuda->codigo.'<br>'.$deuda->descripcion.'</span>';
 	        $html_salida.='</div>';
 	        $html_salida.='</li>';
 	    }

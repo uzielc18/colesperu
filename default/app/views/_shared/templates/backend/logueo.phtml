@@ -20,7 +20,7 @@ $mini2=substr($t_t[1],0, 1);
 ?>
 
         <meta charset="UTF-8"/>
-        <title><?php echo Config::get('config.application.name') ?></title>
+        <title>ACD ColesPerú</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
          <?php
@@ -36,7 +36,7 @@ $mini2=substr($t_t[1],0, 1);
         Tag::css('backendnew/datepicker/datepicker3');
         Tag::css('backendnew/daterangepicker/daterangepicker');
         Tag::css('backendnew/bootstrap-wysihtml5/bootstrap3-wysihtml5.min');
-        Tag::css('backendnew/estilos');
+        //Tag::css('backendnew/estilos');
         echo Html::includeCss();
         ?>
         <?php
@@ -45,9 +45,12 @@ $mini2=substr($t_t[1],0, 1);
         <script src="https://use.fontawesome.com/92eaa29aaf.js"></script>
 </head>
 <body class="hold-transition login-page">
+
     <div class="login-box">
+      <div style="display: inline-block;content: initial;"><?php View::content();?></div>
       <div class="login-logo">
-        <a href="javascript:;"><b><?Php echo $modulo_title?></b></a>
+        <img src="/img/COLES-LOGO.png" alt="colesPerú" width="100"><br>
+        <a href="javascript:;"><b>ACD</b></a>
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
