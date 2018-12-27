@@ -112,7 +112,7 @@
                           <td><?php echo $alumno->nombres?> <?php echo $alumno->apellido_paterno?> <?php echo $alumno->apellido_materno?></td>
                           <td><?php echo $alumno->getTotalIncidencias();?></td>
                           <td>
-                            <?php echo Html::link("/apps/buscador/alumno/$alumno->id",'<i class="fa fa-search" style="font-size:20px;"></i>','title="Ver contenido"')?>
+                            <?php echo Html::link("apps/buscador/alumno/$alumno->id",'<i class="fa fa-search" style="font-size:20px;"></i>','title="Ver contenido"')?>
                             <?php echo Html::linkAction("editar_alumno/$alumno->id",'<i class="fa fa-edit" style="font-size:20px;"></i>','title="Editar registro"')?>
                             <?php echo Html::linkAction("registrar_incidencia/$alumno->id",'<i class="fa fa-bell" style="font-size:20px;"></i>','title="Agregar incidencias"')?>
                             <?php /*if($alumno->estado==3){
