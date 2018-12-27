@@ -91,7 +91,7 @@
                 <?php foreach($deudas as $deuda){?>
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="/img/avatar5.png" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="/img/<?php echo $deuda->sexo?>.png" alt="user image">
                         <span class="username">
                           <a href="#"><?php echo $deuda->nombres?> <?php echo $deuda->paterno?> <?php echo $deuda->materno?></a>
                           <a href="#" class="pull-right btn-box-tool">

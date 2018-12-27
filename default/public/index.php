@@ -1,6 +1,4 @@
-<?php
-//header('Location: http://192.168.1.11/');
-?>
+
 <?php
 /**
  * KumbiaPHP web & app Framework

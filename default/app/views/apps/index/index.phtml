@@ -55,7 +55,7 @@
         <?php foreach($alumnos as $alumno){?>
         <li class="item">
           <div class="product-img">
-            <img src="/img/avatar5.png" alt="Alumno">
+            <img src="/img/<?php echo $alumno->sexo?>.png" alt="Alumno">
           </div>
           <div class="product-info">
             <a href="javascript:void(0)" class="product-title"><?php echo $alumno->nombres?><?php echo $alumno->appelido_paterno?><?php echo $alumno->apellido_materno?>,  DNI: <?php echo $alumno->dni?>, Codigo: <?php echo $alumno->codigo_estudiante?></a>
