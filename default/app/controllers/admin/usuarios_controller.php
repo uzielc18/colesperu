@@ -33,7 +33,8 @@ class UsuariosController extends AdminController {
                 }
 				if (Input::hasPost('datos')) {
 					$dat->fnacimiento=Input::post('anio').'-'.Input::post('mes').'-'.Input::post('dia');
-					$dat->nombre=$usr->nombres;
+					$dat->nombre=$usr->name;
+                    $dat->correo=$usr->email;
                     if ($dat->update(Input::post('datos'))) {
                         Flash::valid('Datos Actualizados Correctamente');
                         return Redirect::toAction('perfil');
