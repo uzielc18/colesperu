@@ -60,9 +60,9 @@ class BuscadorController extends AdminController {
         	if (!(new Deudas)->delete((int) $i_deuda)) {
 	            Flash::error('Falló Operación');
 	        }
-	        if (!(new Alumnos)->delete((int) $id_alumno)) {
+	        /*if (!(new Alumnos)->delete((int) $id_alumno)) {
 	            Flash::error('Falló Operación');
-	        }
+	        }*/
 	    }
         //enrutando al index para listar los articulos
         Redirect::toAction('index');
