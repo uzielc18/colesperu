@@ -97,7 +97,8 @@ class UsuariosController extends AdminController {
             if (Input::hasPost('usuario')) {
 					$usr->userid=Auth::get('id');
 				if ($usr->update(Input::post('usuario'))){
-					
+					$dat->correo=$usr->email;
+                    $dat->aclempresas_id=$usr->aclempresas_id;
 					$dat->update(Input::post('dato'));
                     Flash::valid('El Usuario Ha Sido Actualizado 
 					Exitosamente...!!!');

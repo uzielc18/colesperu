@@ -17,9 +17,9 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <?php echo Form::label('correo','dato.correo','class="col-sm-3 control-label"');?>
+            <?php echo Form::label('correo','usuario.email','class="col-sm-3 control-label"');?>
                 <div class="col-sm-9">
-                    <?php echo Form::text('dato.correo','class="form-control" placeholder="Correo @" required')?>
+                    <?php echo Form::text('usuario.email','class="form-control" placeholder="Correo @" required')?>
                 </div>
             </div>  
         </div>
@@ -68,9 +68,9 @@
 
         <div class="col-sm-6">
           <div class="form-group">
-            <?php echo Form::label('Empresas','dato.aclempresas_id','class="col-sm-3 control-label"');?>
+            <?php echo Form::label('Empresas','usuario.aclempresas_id','class="col-sm-3 control-label"');?>
                 <div class="col-sm-9">
-                    <?php echo Form::dbSelect('dato.aclempresas_id','razonsocial',NULL,'Seleccione','class="form-control" required')?>
+                    <?php echo Form::dbSelect('usuario.aclempresas_id','razonsocial',NULL,'Seleccione','class="form-control" required')?>
                 </div>
             </div>  
         </div>

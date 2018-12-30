@@ -3,9 +3,11 @@ View::template('apps/default_app');
 class BuscadorController extends AdminController {
 	
 	public function index(){
+		$q=$_GET['buscar_dato'];
 		$this->estados=(new Estados)->find();
         $Deudas = new Deudas();
-        $this->deudas=$Deudas->getIncidenciasAll();
+        $this->buscar_dato=$q;
+        $this->deudas=$Deudas->getIncidenciasAll_buscar($q);
 	}
 	public function resultados(){
 	 	View::template(NULL); 

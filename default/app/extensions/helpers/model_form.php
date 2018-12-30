@@ -62,7 +62,12 @@ class ModelForm
                 case 'year': case 'day': case 'int unsigned': // Números
 
                     if (strripos($field, '_id', -3)) {
-                        echo Form::dbSelect($model_name.'.'.$field, null, null, 'Seleccione', 'class="form-control"', $model->$field);
+                        if($field==='ubigeo_id'){
+                            echo Form::dbSelect($model_name.'.'.$field, 'resultado', array('ubigeo','get_allUbigeo'), 'Seleccione.....', 'class="form-control"', $model->$field);
+                        }else{
+                            echo Form::dbSelect($model_name.'.'.$field, null, null, 'Seleccione', 'class="form-control"', $model->$field);
+                        }
+                        
                         break;
                     } else {
                         echo "<input id=\"$formId\" type=\"number\" name=\"$formName\" value=\"{$model->$field}\" class=\"form-control\">" , PHP_EOL;

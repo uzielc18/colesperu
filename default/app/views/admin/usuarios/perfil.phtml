@@ -76,7 +76,8 @@
             <?php echo Form::close() ?>
         </div>
         <div id="clave" class="tab-pane">
-            <?php echo Ajax::form('res-clave', NULL, 'form-horizontal')//Form::open() ?>
+            <?php //echo Ajax::form('res-clave', NULL, 'form-horizontal')//Form::open() ?>
+            <?php echo Form::open(NULL, 'post','class="form-horizontal" role="form"') ?>
             <fieldset>
                 <legend>Cambiar Contrase&ntilde;a</legend>
                 <div id="res-clave"></div>
