@@ -55,8 +55,10 @@ class UsuariosController extends AdminController {
     public function crear() {
         try {
              if (Input::hasPost('usuario')) {
+                $dato_usr=Input::post('usuario');
                 $dat = new Acldatos(Input::post('dato'));
                 $dat->estado='1';
+                $dat->correo=$dato_usr['email'];
                 $dat->userid=Auth::get('id');
                 if ($dat->save()) {
 					$usr= new Users(Input::post('usuario'));
@@ -64,7 +66,7 @@ class UsuariosController extends AdminController {
                     $usr->clave=md5('123456');
                     $usr->password='123456';
                     $usr->aclempresas_id=$dat->aclempresas_id;
-                    $usr->email=$dat->correo;
+                    //$usr->email=$dat->correo;
                     $usr->dni=$dat->dni;
                     $usr->picture='avatar2.png';
                     $usr->activo='0';

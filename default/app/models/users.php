@@ -6,7 +6,7 @@ class Users extends ActiveRecord {
         $min_clave = Config::get('config.application.minimo_clave');
         $this->belongs_to('acldatos','aclroles','aclempresas');
 		//$this->has_one();
-        $this->has_many('aclauditorias','peraccidentes','aclempresas','aclroles');
+        $this->has_many('aclauditorias','aclempresas','aclroles');
         $this->validates_presence_of('usuario', 'message: Debe escribir un <b>Usuario</b> para el Usuario');
         $this->validates_presence_of('clave', 'message: Debe escribir una <b>Contraseña</b>');
         $this->validates_length_of('clave', 50, $min_clave, "too_short: La Clave debe tener <b>Minimo {$min_clave} caracteres</b>");
