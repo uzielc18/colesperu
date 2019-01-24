@@ -33,8 +33,10 @@
      }else{
      echo Html::linkAction("desactivar/$item->id",Html::img("figuras/circulo_verde.png",'Editar','style="width: 20px;margin-left:10px;margin-right:10px;"'), 'onclick="return confirm(\'¿Está seguro?\')"');}?>
       </td>
-      <td><?php echo Html::linkAction('editar/'.$item->id,Html::img("figuras/editar.png",'Editar','style="width: 20px;margin-left:10px;margin-right:10px;"'),'')?>
-      <?php echo Html::linkAction("eliminar/$item->id",Html::img("figuras/eliminar.png",'Eliminar','style="width: 20px;margin-left:10px;margin-right:10px;"'), 'onclick="return confirm(\'¿Está seguro?\')"');?>
+      <td>
+        <?php echo Html::linkAction('restClave/'.$item->id,Html::img("figuras/produccion.png",'Reset Clave','style="width: 20px;margin-left:10px;margin-right:10px;"'),'title="Restableces clave inicial"')?>
+        <?php echo Html::linkAction('editar/'.$item->id,Html::img("figuras/editar.png",'Editar','style="width: 20px;margin-left:10px;margin-right:10px;"'),'')?>
+        <?php echo Html::linkAction("eliminar/$item->id",Html::img("figuras/eliminar.png",'Eliminar','style="width: 20px;margin-left:10px;margin-right:10px;"'), 'onclick="return confirm(\'¿Está seguro?\')"');?>
       </td>
     </tr>
   <?php }?>

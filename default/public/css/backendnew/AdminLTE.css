@@ -3236,7 +3236,9 @@ table.text-center th {
 }
 .login-page,
 .register-page {
-  background: #d2d6de;
+  /*background: #d2d6de;*/
+
+  background: url(/img/figuras/estrategia.png);
 }
 .login-box,
 .register-box {

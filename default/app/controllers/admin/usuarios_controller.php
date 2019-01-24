@@ -184,4 +184,13 @@ class UsuariosController extends AdminController {
 		$datos=new Tesdatos();
 		$this->datos=$datos->find('conditions: aclempresas_id=1','order: ruc,razonsocial ASC');
 	}
+    public function restClave($id=0){
+        if($id!=0){
+            $usr= (new Users)->find_first($id);
+            $usr->clave=md5('123456');
+            $usr->save();
+            Flash::valid("El Usuario <b>{$usr->usuario}</b> su clave fue restablecida a 123456");
+            return Redirect::to();
+        }
+    }
 }

@@ -58,7 +58,7 @@
             <img src="/img/<?php echo $alumno->sexo?>.png" alt="Alumno">
           </div>
           <div class="product-info">
-            <a href="javascript:void(0)" class="product-title"><?php echo $alumno->nombres?> <?php echo $alumno->appelido_paterno?> <?php echo $alumno->apellido_materno?>,  DNI: <?php echo $alumno->dni?>, Codigo: <?php echo $alumno->codigo_estudiante?></a>
+            <a href="/apps/buscador/alumno/<?php echo $alumno->id?>" class="product-title"><?php echo $alumno->nombres?> <?php echo $alumno->appelido_paterno?> <?php echo $alumno->apellido_materno?>,  DNI: <?php echo $alumno->dni?>, Codigo: <?php echo $alumno->codigo_estudiante?></a>
             <span class="product-description">
               <?php foreach ($alumno->getDeudas() as $deuda) {
                 echo ' <span class="with-border label '.$deuda->getEstados()->color.'">'.$deuda->mes.'-'.$deuda->anio.', '.$deuda->descripcion.' '.$deuda->getColegios()->nombre.'</span>';
