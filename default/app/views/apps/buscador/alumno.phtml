@@ -35,10 +35,13 @@
                   </thead>
                  
                   <tbody>
-                  <?php foreach($deudas as $deuda){?>
+                  <?php 
+                  $n=0;
+                  foreach($deudas as $deuda){
+                  $n++;?>
                   <tr>
-                    <td><?php echo $deuda->id?></td>
-                    <td><?php echo $deuda->anio?> <?php echo $deuda->mes?></td>
+                    <td><?php echo $n?></td>
+                    <td> <?php echo $meses[$deuda->mes]?>-<?php echo $deuda->anio?></td>
                     <td><?php echo $deuda->descripcion?></td>
                     <td><?php echo $deuda->getColegios()->nombre?></td>
                     <td><span class="label <?php echo $deuda->getEstados()->color?>"><?php echo $deuda->getEstados()->nombre?></span></td>
